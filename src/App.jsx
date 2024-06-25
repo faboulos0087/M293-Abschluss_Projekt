@@ -1,28 +1,31 @@
-import React from "react";
-import "./App.css";
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './Header';
+import CalendarPage from './Calenderpage';
+import './App.css';
 
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import {Container} from "@mui/material";
-
-const rows: GridRowsProp = [
-  { id: 1, col1: 'Hello', col2: 'World' },
-  { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-  { id: 3, col1: 'MUI', col2: 'is Amazing' },
-];
-
-const columns : GridColDef[] = [
-  { field: 'col1', headerName: 'Column 1', width: 150 },
-  { field: 'col2', headerName: 'Column 2', width: 150 },
-];
-
-
-export default function App() {
-
-   return (
-    <Container fixed>
-      <div style={{ height: 300, width: '100%' }}>
-        <DataGrid rows={rows} columns={columns} />
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </main>
       </div>
-    </Container>
+    </Router>
   );
 }
+
+const HomePage = () => (
+  <div>
+    <h2>Home Page</h2>
+    <p>Willkommen auf der Startseite!</p>
+  </div>
+);
+
+export default App;
